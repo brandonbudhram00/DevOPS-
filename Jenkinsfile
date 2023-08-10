@@ -14,7 +14,7 @@ pipeline {
                 sh 'docker build -t nginx-web-server .'
                 
                 // Tag the Docker image
-                sh 'docker tag nginx-container:latest brandonbudhram/nginx-web-server:v1.0'
+                sh 'docker tag nginx-web-server:latest brandonbudhram/nginx-web-server:v1.0'
                 
                 // Push the Docker image to the registry
                 sh 'docker push brandonbudhram/nginx-web-server:v1.0'
