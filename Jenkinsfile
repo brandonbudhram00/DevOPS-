@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
     
@@ -11,9 +10,18 @@ pipeline {
         
         stage('Build and Deploy') {
             steps {
-                sh 'docker build -t my-nginx-container .'
-                sh 'docker run -p 80:80 my-nginx-container'
+                // Build the Docker image
+                sh 'docker build -t nginx-web-server .'
+                
+                // Tag the Docker image
+                sh 'docker tag nginx-container:latest brandonbudhram/nginx-web-server:v1.0'
+                
+                // Push the Docker image to the registry
+                sh 'docker push brandonbudhram/nginx-web-server:v1.0'
+                
+                // You can also include the docker run command here if needed
             }
         }
     }
 }
+
